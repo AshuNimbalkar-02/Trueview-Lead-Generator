@@ -34,5 +34,4 @@ A professional-grade AI-powered lead generation tool designed for **Trueview War
 - `src/App.css`: Professional design system and animations.
 - `src/assets/`: Branding and static resources.
 
----
-*Created as part of the AI Product Builder Internship application process for Vilican AI Lab.*
+
