@@ -1,7 +1,7 @@
 # Trueview Strategic Lead Portal 🚀
 ### Intelligent B2B Lead Generation MVP for Vilican AI Lab Assignment
 
-A professional-grade AI-powered lead generation tool designed for **Trueview Warner Pvt. Ltd. (Shendra MIDC)**. This application automates the process of finding high-value procurement leads for security systems, interactive displays, and water quality solutions.
+A professional-grade AI-powered lead generation tool designed for **Trueview Warner Pvt. Ltd.** This application automates the process of finding high-value procurement leads for security systems, interactive displays, and water quality solutions.
 
 ## 🔗 Live Links
 - **Live Demo:** [Insert your Vercel/Netlify Link Here]

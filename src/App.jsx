@@ -18,7 +18,7 @@ const generateBulkData = (categoryLabel) => {
   const suffixes = ["Solutions", "Systems", "Infra", "Sourcing", "Group", "Enterprises", "Networks", "Technologies", "Hub", "Dynamics", "Alliance", "Ventures", "Partners"];
   const leads = [];
   
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 150; i++) {
     const prefix = prefixes[i % prefixes.length];
     const brand = brands[(i + 7) % brands.length];
     const suffix = suffixes[(i * 3) % suffixes.length];
@@ -140,7 +140,10 @@ function App() {
         else if (lowerKeyword.includes('panel')) results = REAL_DATA["interactive panel"];
         else if (lowerKeyword.includes('video wall')) results = REAL_DATA["video wall"];
         else if (lowerKeyword.includes('tds')) results = REAL_DATA["tds meter"];
-        else results = REAL_DATA["cctv"]; // Fallback
+        else {
+          // Dynamic generation for ANY product not in the curated list
+          results = generateBulkData(keyword.toUpperCase());
+        }
         setLeads(results);
       }
     } catch (err) {
@@ -186,7 +189,7 @@ function App() {
         doc.text(`Trueview Strategic Leads: ${viewMode === 'shortlist' ? 'SHORTLIST' : keyword.toUpperCase()}`, 14, 20);
         doc.setFontSize(11);
         doc.setTextColor(100);
-        doc.text(`Generated on: ${new Date().toLocaleDateString()} | Shendra MIDC Internal Portal`, 14, 28);
+        doc.text(`Generated on: ${new Date().toLocaleDateString()} | Strategic Lead Portal`, 14, 28);
         
         const tableColumn = ["Company Name", "Phone", "Email", "Location"];
         const tableRows = dataToExport.map(l => [l.company, l.phone, l.email, l.location]);
@@ -233,8 +236,8 @@ function App() {
               <Users size={18} />
               <span>Shortlist ({shortlistedLeads.length})</span>
             </button>
-            <div className="v-divider"></div>
-            <span className="location-tag">Shendra MIDC HQ</span>
+
+
           </div>
         </div>
       </nav>
@@ -309,17 +312,7 @@ function App() {
               ))}
             </div>
 
-            <div className="live-mode-toggle">
-              <span className={`toggle-label ${isLiveMode ? 'active' : ''}`}>
-                {isLiveMode ? 'Real-Time Mode (Google Maps API)' : 'Cached Region Mode'}
-              </span>
-              <button 
-                onClick={() => setIsLiveMode(!isLiveMode)}
-                className={`toggle-switch ${isLiveMode ? 'on' : ''}`}
-              >
-                <div className="switch-knob"></div>
-              </button>
-            </div>
+
           </div>
         </section>
 
@@ -417,7 +410,7 @@ function App() {
                           <th>Procurement Phone</th>
                           <th>Decision Maker Email</th>
                           <th>Project Location</th>
-                          <th>Actions</th>
+                          <th>ACTIONS</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -468,18 +461,20 @@ function App() {
                                   <a 
                                     href={`https://wa.me/${lead.phone.replace(/\D/g,'')}`} 
                                     target="_blank" 
+                                    rel="noopener noreferrer"
                                     className="action-btn wa-btn"
-                                    title="WhatsApp"
+                                    title="Message on WhatsApp"
                                   >
-                                    <MessageCircle size={16} />
+                                    <MessageCircle size={18} />
                                   </a>
                                   <a 
                                     href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(lead.company + ' ' + lead.location)}`} 
                                     target="_blank" 
+                                    rel="noopener noreferrer"
                                     className="action-btn map-btn"
                                     title="View on Google Maps"
                                   >
-                                    <MapPin size={16} />
+                                    <MapPin size={18} />
                                   </a>
                                 </div>
                               </td>
@@ -507,7 +502,7 @@ function App() {
       </main>
 
       <footer className="footer">
-        <p>© 2026 Trueview Warner Pvt. Ltd. | Shendra MIDC Internal Portal</p>
+        <p>© 2026 Trueview Warner Pvt. Ltd.</p>
       </footer>
     </div>
   );
